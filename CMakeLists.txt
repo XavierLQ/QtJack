@@ -12,11 +12,23 @@ find_package(Qt5 COMPONENTS
         Gui
         Widgets
         REQUIRED)
-
-add_executable(QtJack main.cpp)
+add_executable(QtJack
+        main.cpp
+        model/BlackjackModel.cpp
+        viewmodel/BlackjackViewModel.cpp
+        view/BlackjackWindow.cpp
+)
 target_link_libraries(QtJack
         Qt5::Core
         Qt5::Gui
         Qt5::Widgets
+)
+
+# Make headers discoverable without changing include paths
+target_include_directories(QtJack PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/model
+        ${CMAKE_CURRENT_SOURCE_DIR}/viewmodel
+        ${CMAKE_CURRENT_SOURCE_DIR}/view
+        ${CMAKE_CURRENT_SOURCE_DIR}/common
 )
 
