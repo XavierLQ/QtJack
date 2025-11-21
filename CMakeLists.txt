@@ -17,6 +17,7 @@ add_executable(QtJack
         model/BlackjackModel.cpp
         viewmodel/BlackjackViewModel.cpp
         view/BlackjackWindow.cpp
+        framework/Button.h
 )
 target_link_libraries(QtJack
         Qt5::Core
