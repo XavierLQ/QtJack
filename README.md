@@ -22,20 +22,8 @@ Project Layout
 Prerequisites
 You need a C++20 compiler, CMake, and Qt5 (Widgets module).
 
-- Linux (Debian/Ubuntu):
+- Linux (Ubuntu):
   - sudo apt update && sudo apt install -y build-essential cmake qtbase5-dev
-- Fedora:
-  - sudo dnf install -y gcc-c++ cmake qt5-qtbase-devel
-- Arch:
-  - sudo pacman -S --needed base-devel cmake qt5-base
-- macOS:
-  - brew install cmake
-  - brew install qt@5
-  - You may need to set CMAKE_PREFIX_PATH to Homebrew’s Qt5, for example:
-    - export CMAKE_PREFIX_PATH="$(brew --prefix qt@5)"
-- Windows:
-  - Option A (Qt Creator): Install Qt 5.x with Qt Creator, open this folder, configure, and build.
-  - Option B (CMake + MSVC/MinGW): Install Qt 5.x, ensure qmake/Qt5 cmake packages are in CMAKE_PREFIX_PATH.
 
 Build and Run
 These commands assume an out-of-source build. From the repository root:
