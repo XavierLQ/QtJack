@@ -46,17 +46,6 @@ These commands assume an out-of-source build. From the repository root:
   - cmake --build . -j
   - ./QtJack
 
-- Windows (PowerShell, Developer Prompt):
-  - mkdir build; cd build
-  - cmake .. -G "Ninja"  # or omit -G to use default generator
-  - cmake --build . --config Release
-  - .\\Release\\QtJack.exe  # or .\\QtJack.exe depending on generator/config
-
-If CMake cannot locate Qt5, set CMAKE_PREFIX_PATH to your Qt installation prefix. Examples:
-- Linux: export CMAKE_PREFIX_PATH=/usr/lib/x86_64-linux-gnu/cmake
-- macOS (Homebrew Qt5): export CMAKE_PREFIX_PATH="$(brew --prefix qt@5)"
-- Windows: set CMAKE_PREFIX_PATH=C:\\Qt\\5.15.2\\msvc2019_64\\lib\\cmake
-
 Gameplay and Controls
 - New round starts with initial deal
 - Hit: deal another card to the player
@@ -71,16 +60,3 @@ Architecture Notes
 
 This separation aims to keep UI code minimal while allowing unit-testable logic in the Model/ViewModel.
 
-Troubleshooting
-- CMake can’t find Qt5:
-  - Ensure Qt5 is installed (Widgets module) and set CMAKE_PREFIX_PATH to the Qt cmake package directory.
-- Linker errors about Qt symbols:
-  - Make sure you’re linking against the same Qt you compiled against; clean the build directory and reconfigure.
-- Build errors about CMake version:
-  - If your CMake is older than the one required in CMakeLists.txt, update CMake (or adjust the minimum version if you know what you’re doing).
-
-Contributing
-Issues and small PRs are welcome. This is a learning project; clarity and simplicity are preferred over feature completeness.
-
-License
-No license file is provided. Treat this as read-only unless you obtain permission from the author to reuse or redistribute.
