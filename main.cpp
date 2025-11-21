@@ -1,10 +1,10 @@
-#include <QApplication>
+#include "framework/App.h"
 #include "view/BlackjackWindow.h"
 
 int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
+    Framework::App a(argc, argv);
     BlackjackWindow w;
     w.show();
-    return QApplication::exec();
+    return Framework::App::exec();
 }

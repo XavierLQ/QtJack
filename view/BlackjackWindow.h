@@ -1,12 +1,14 @@
 #pragma once
 
-#include <QWidget>
+#include "framework/Window.h"
+
+namespace Framework { class Label; class Button; }
 
 class QLabel;
 class QPushButton;
 class BlackjackViewModel;
 
-class BlackjackWindow : public QWidget {
+class BlackjackWindow : public Framework::Window {
     Q_OBJECT
 public:
     explicit BlackjackWindow(QWidget* parent = nullptr);
@@ -16,15 +18,15 @@ private slots:
 
 private:
     // UI
-    QLabel* m_dealerLabel{};
-    QLabel* m_dealerTotal{};
-    QLabel* m_playerLabel{};
-    QLabel* m_playerTotal{};
-    QLabel* m_statusLabel{};
-    QLabel* m_chipsLabel{};
-    QPushButton* m_dealBtn{};
-    QPushButton* m_hitBtn{};
-    QPushButton* m_standBtn{};
+    Framework::Label* m_dealerLabel{};
+    Framework::Label* m_dealerTotal{};
+    Framework::Label* m_playerLabel{};
+    Framework::Label* m_playerTotal{};
+    Framework::Label* m_statusLabel{};
+    Framework::Label* m_chipsLabel{};
+    Framework::Button* m_dealBtn{};
+    Framework::Button* m_hitBtn{};
+    Framework::Button* m_standBtn{};
 
     BlackjackViewModel* m_vm{};
 };

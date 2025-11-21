@@ -26,9 +26,11 @@ target_link_libraries(QtJack
 
 # Make headers discoverable without changing include paths
 target_include_directories(QtJack PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/model
         ${CMAKE_CURRENT_SOURCE_DIR}/viewmodel
         ${CMAKE_CURRENT_SOURCE_DIR}/view
+        ${CMAKE_CURRENT_SOURCE_DIR}/framework
         ${CMAKE_CURRENT_SOURCE_DIR}/common
 )
 

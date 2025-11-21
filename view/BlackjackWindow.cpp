@@ -4,58 +4,57 @@
 #include "Constants.h"
 #include "Styles.h"
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QPushButton>
+#include "framework/Layouts.h"
+#include "framework/Label.h"
+#include "framework/Button.h"
 
 BlackjackWindow::BlackjackWindow(QWidget* parent)
-    : QWidget(parent)
+    : Framework::Window(parent)
     , m_vm(new BlackjackViewModel(this))
 {
     setWindowTitle(Strings::WINDOW_TITLE);
 
-    auto* root = new QVBoxLayout(this);
+    auto* root = new Framework::VBoxLayout(this);
     root->setSpacing(Styles::ROOT_SPACING);
     root->setContentsMargins(Styles::ROOT_MARGIN, Styles::ROOT_MARGIN, Styles::ROOT_MARGIN, Styles::ROOT_MARGIN);
 
-    auto* dealerBox = new QVBoxLayout();
-    auto* dealerTitle = new QLabel(Strings::DEALER_TITLE, this);
+    auto* dealerBox = new Framework::VBoxLayout();
+    auto* dealerTitle = new Framework::Label(Strings::DEALER_TITLE, this);
     dealerTitle->setStyleSheet(Styles::TITLE_LABEL);
-    m_dealerLabel = new QLabel(Strings::EMPTY, this);
-    m_dealerTotal = new QLabel(Strings::EMPTY, this);
+    m_dealerLabel = new Framework::Label(Strings::EMPTY, this);
+    m_dealerTotal = new Framework::Label(Strings::EMPTY, this);
     dealerBox->addWidget(dealerTitle);
     dealerBox->addWidget(m_dealerLabel);
     dealerBox->addWidget(m_dealerTotal);
 
-    auto* playerBox = new QVBoxLayout();
-    auto* playerTitle = new QLabel(Strings::PLAYER_TITLE, this);
+    auto* playerBox = new Framework::VBoxLayout();
+    auto* playerTitle = new Framework::Label(Strings::PLAYER_TITLE, this);
     playerTitle->setStyleSheet(Styles::TITLE_LABEL);
-    m_playerLabel = new QLabel(Strings::EMPTY, this);
-    m_playerTotal = new QLabel(Strings::EMPTY, this);
+    m_playerLabel = new Framework::Label(Strings::EMPTY, this);
+    m_playerTotal = new Framework::Label(Strings::EMPTY, this);
     playerBox->addWidget(playerTitle);
     playerBox->addWidget(m_playerLabel);
     playerBox->addWidget(m_playerTotal);
 
-    auto* mid = new QHBoxLayout();
+    auto* mid = new Framework::HBoxLayout();
     mid->addLayout(dealerBox);
     mid->addSpacing(Styles::MID_SPACING);
     mid->addLayout(playerBox);
 
-    m_statusLabel = new QLabel(Strings::STATUS_START, this);
+    m_statusLabel = new Framework::Label(Strings::STATUS_START, this);
     m_statusLabel->setWordWrap(true);
     m_statusLabel->setStyleSheet(Styles::STATUS_LABEL);
 
-    auto* controls = new QHBoxLayout();
+    auto* controls = new Framework::HBoxLayout();
     controls->setSpacing(Styles::CONTROLS_SPACING);
-    m_dealBtn = new QPushButton(Strings::BTN_DEAL, this);
-    m_hitBtn = new QPushButton(Strings::BTN_HIT, this);
-    m_standBtn = new QPushButton(Strings::BTN_STAND, this);
+    m_dealBtn = new Framework::Button(Strings::BTN_DEAL, this);
+    m_hitBtn = new Framework::Button(Strings::BTN_HIT, this);
+    m_standBtn = new Framework::Button(Strings::BTN_STAND, this);
     controls->addWidget(m_dealBtn);
     controls->addWidget(m_hitBtn);
     controls->addWidget(m_standBtn);
 
-    m_chipsLabel = new QLabel(this);
+    m_chipsLabel = new Framework::Label(this);
     m_chipsLabel->setStyleSheet(Styles::CHIPS_LABEL);
 
     root->addLayout(mid, 1);
@@ -67,9 +66,9 @@ BlackjackWindow::BlackjackWindow(QWidget* parent)
     resize(Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT);
 
     // Wire view to viewmodel
-    connect(m_dealBtn, &QPushButton::clicked, m_vm, &BlackjackViewModel::deal);
-    connect(m_hitBtn, &QPushButton::clicked, m_vm, &BlackjackViewModel::hit);
-    connect(m_standBtn, &QPushButton::clicked, m_vm, &BlackjackViewModel::stand);
+    connect(m_dealBtn, &Framework::Button::clicked, m_vm, &BlackjackViewModel::deal);
+    connect(m_hitBtn, &Framework::Button::clicked, m_vm, &BlackjackViewModel::hit);
+    connect(m_standBtn, &Framework::Button::clicked, m_vm, &BlackjackViewModel::stand);
     connect(m_vm, &BlackjackViewModel::viewDataChanged, this, &BlackjackWindow::refresh);
 
     refresh();
